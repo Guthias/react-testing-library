@@ -20,10 +20,12 @@ describe('About', () => {
   });
 
   it('Should contain two paragraphs with texts about the pokedex', () => {
-    fail('empty test');
+    const firstParagraph = screen.getByText(/This application simulates a Pokédex/i);
+    const secondParagraph = screen.getByText(/One can filter Pokémons by type/i);
+    expect(firstParagraph && secondParagraph).toBeInTheDocument();
   });
 
-  it.only('Should contain a pokedex image', () => {
+  it('Should contain a pokedex image', () => {
     const imageElement = screen.getByRole('img');
     expect(imageElement.src).toBe(imgUrl);
   });
