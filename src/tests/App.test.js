@@ -1,15 +1,11 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router-dom';
+import { screen } from '@testing-library/react';
 import App from '../App';
+import renderWithRouter from './renderWithRouter';
 
 describe('Testando o componente App', () => {
   beforeEach(() => {
-    render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>,
-    );
+    renderWithRouter(<App />);
   });
 
   test('Teste se o link Home está presente na aplicação', () => {
