@@ -11,21 +11,13 @@ const navLinks = [
 ];
 
 describe('App', () => {
-  it('Should contain a Link with the text Home and redirect to \'/\'', () => {
-    const { history } = renderWithRouter(<App />);
-    const linkElement = screen.getByRole('link', { name: 'Home' });
-    userEvent.click(linkElement);
-    const { pathname } = history.location;
-    expect(pathname).toBe('/');
-  });
-
-  test('Teste se o link About está presente na aplicação', () => {
-    const linkElement = screen.getByRole('link', { name: 'About' });
-    expect(linkElement).toBeInTheDocument();
-  });
-
-  test('Teste se o link Favorite Pokémons está presente na aplicação', () => {
-    const linkElement = screen.getByRole('link', { name: 'Favorite Pokémons' });
-    expect(linkElement).toBeInTheDocument();
+  navLinks.forEach(({ text, url }) => {
+    it(`Should contain a Link with the text ${text} and redirect to '${url}'`, () => {
+      const { history } = renderWithRouter(<App />);
+      const linkElement = screen.getByRole('link', { name: text });
+      userEvent.click(linkElement);
+      const { pathname } = history.location;
+      expect(pathname).toBe(url);
+    });
   });
 });
