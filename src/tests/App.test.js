@@ -16,4 +16,9 @@ describe('Testando o componente App', () => {
     const linkElement = screen.getByRole('link', { name: 'Home' });
     expect(linkElement).toBeInTheDocument();
   });
+
+  test('Teste se o link About está presente na aplicação', () => {
+    const linkElement = screen.getByRole('link', { name: 'About' });
+    expect(linkElement).toBeInTheDocument();
+  });
 });
