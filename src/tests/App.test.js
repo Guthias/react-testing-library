@@ -20,4 +20,11 @@ describe('App', () => {
       expect(pathname).toBe(url);
     });
   });
+
+  it('Should redirect to a 404 page when dont exist the url', () => {
+    const { history } = renderWithRouter(<App />);
+    history.push('/digimon');
+    const notFound = screen.getByRole('heading', { name: /page requested not found/i });
+    expect(notFound).toBeInTheDocument();
+  });
 });
