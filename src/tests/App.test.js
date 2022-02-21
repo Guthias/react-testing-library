@@ -21,4 +21,9 @@ describe('Testando o componente App', () => {
     const linkElement = screen.getByRole('link', { name: 'About' });
     expect(linkElement).toBeInTheDocument();
   });
+
+  test('Teste se o link Favorite Pokémons está presente na aplicação', () => {
+    const linkElement = screen.getByRole('link', { name: 'Favorite Pokémons' });
+    expect(linkElement).toBeInTheDocument();
+  });
 });
