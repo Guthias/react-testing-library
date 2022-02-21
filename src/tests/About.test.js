@@ -1,10 +1,15 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import renderWithRouter from './renderWithRouter';
 import About from '../components/About';
 
 describe('About', () => {
+  beforeEach(() => {
+    render(
+      <About />,
+    );
+  });
+
   it('Should contain a h2 with text \'About Pokédex\'', () => {
     fail('empty test');
   });
