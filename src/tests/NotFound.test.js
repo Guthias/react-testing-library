@@ -2,6 +2,8 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import NotFound from '../components/NotFound';
 
+const imgUrl = 'https://media.giphy.com/media/kNSeTs31XBZ3G/giphy.gif';
+
 describe('Not Found', () => {
   beforeEach(() => {
     render(
@@ -15,5 +17,8 @@ describe('Not Found', () => {
     expect(titleElement).toBeInTheDocument();
   });
 
-  it('Should contain a image with pikachu crying', () => { });
+  it('Should contain a image with pikachu crying', () => {
+    const imageElements = screen.getAllByRole('img');
+    expect(imageElements[1].src).toBe(imgUrl);
+  });
 });
