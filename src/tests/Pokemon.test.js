@@ -46,6 +46,6 @@ describe('Pokemon', () => {
     renderWithRouter(<Pokemon { ...props } isFavorite />);
     const favoriteStar = screen.getByRole('img',
       { name: /Piplup is marked as favorite/i });
-    expect(favoriteStar).toBeInTheDocument();
+    expect(favoriteStar.src).toContain('star-icon.svg');
   });
 });
