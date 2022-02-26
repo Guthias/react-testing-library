@@ -1,5 +1,6 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import Pokemon from '../components/Pokemon';
 import renderWithRouter from './renderWithRouter';
 
@@ -30,5 +31,13 @@ describe('Pokemon', () => {
     renderWithRouter(<Pokemon { ...props } />);
     const pokemonSprite = screen.getByRole('img');
     expect(pokemonSprite.src).toBe(props.pokemon.image);
+  });
+
+  it('Should contain a More Details link', () => {
+    const { history } = renderWithRouter(<Pokemon { ...props } />);
+    const moreDetailsLink = screen.getByRole('link', /more details/i);
+    userEvent.click(moreDetailsLink);
+    const { pathname } = history.location;
+    expect(pathname).toBe('/pokemons/393');
   });
 });
