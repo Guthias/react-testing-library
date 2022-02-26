@@ -1,6 +1,7 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Pokemon from '../components/Pokemon';
+import renderWithRouter from './renderWithRouter';
 
 const props = {
   pokemon: {
@@ -18,9 +19,7 @@ const props = {
 
 describe('Pokemon', () => {
   beforeEach(() => {
-    render(
-      <Pokemon { ...props } />,
-    );
+    renderWithRouter(<Pokemon { ...props } />);
   });
 
   it('', () => { });
