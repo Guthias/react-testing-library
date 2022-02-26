@@ -28,4 +28,9 @@ describe('Pokemon', () => {
     const pokemonWeight = screen.getByText(/Average weight: 5.2 kg/i);
     expect(pokemonName && pokemonType && pokemonWeight).toBeInTheDocument();
   });
+
+  it('Should contain a Pokemon sprite', () => {
+    const pokemonSprite = screen.getByRole('img');
+    expect(pokemonSprite.src).toBe(props.pokemon.image);
+  });
 });
