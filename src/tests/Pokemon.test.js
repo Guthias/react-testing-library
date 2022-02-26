@@ -18,11 +18,8 @@ const props = {
 };
 
 describe('Pokemon', () => {
-  beforeEach(() => {
-    renderWithRouter(<Pokemon { ...props } />);
-  });
-
   it('Should contain Pokemon infos on Screen', () => {
+    renderWithRouter(<Pokemon { ...props } />);
     const pokemonName = screen.getByText(/piplup/i);
     const pokemonType = screen.getByText(/water/i);
     const pokemonWeight = screen.getByText(/Average weight: 5.2 kg/i);
@@ -30,6 +27,7 @@ describe('Pokemon', () => {
   });
 
   it('Should contain a Pokemon sprite', () => {
+    renderWithRouter(<Pokemon { ...props } />);
     const pokemonSprite = screen.getByRole('img');
     expect(pokemonSprite.src).toBe(props.pokemon.image);
   });
