@@ -22,5 +22,10 @@ describe('Pokemon', () => {
     renderWithRouter(<Pokemon { ...props } />);
   });
 
-  it('', () => { });
+  it('Should contain Pokemon infos on Screen', () => {
+    const pokemonName = screen.getByText(/piplup/i);
+    const pokemonType = screen.getByText(/water/i);
+    const pokemonWeight = screen.getByText(/Average weight: 5.2 kg/i);
+    expect(pokemonName && pokemonType && pokemonWeight).toBeInTheDocument();
+  });
 });
