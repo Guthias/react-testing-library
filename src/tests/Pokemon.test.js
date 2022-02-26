@@ -29,7 +29,8 @@ describe('Pokemon', () => {
 
   it('Should contain a Pokemon sprite', () => {
     renderWithRouter(<Pokemon { ...props } />);
-    const pokemonSprite = screen.getByRole('img');
+    const pokemonSprite = screen.getByRole('img',
+      { name: /Piplup sprite/i });
     expect(pokemonSprite.src).toBe(props.pokemon.image);
   });
 
