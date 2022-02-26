@@ -40,4 +40,11 @@ describe('Pokemon', () => {
     const { pathname } = history.location;
     expect(pathname).toBe('/pokemons/393');
   });
+
+  it('Should contain a Star when its favorited', () => {
+    renderWithRouter(<Pokemon { ...props } isFavorite />);
+    const favoriteStar = screen.getByRole('img',
+      { name: /Piplup is marked as favorite/i });
+    expect(favoriteStar).toBeInTheDocument();
+  });
 });
