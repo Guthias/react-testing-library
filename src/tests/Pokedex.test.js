@@ -43,4 +43,20 @@ describe('Pokedex', () => {
     const pokemonName = screen.getByText(/pikachu/i);
     expect(pokemonName).toBeInTheDocument();
   });
+
+  it('Should contain filter buttons', () => {
+    const fireFilter = screen.getByRole('button', { name: /fire/i });
+    const nextPokemon = screen.getByRole('button', { name: /próximo pokémon/i });
+    userEvent.click(fireFilter);
+
+    const charmanderCard = screen.getByText(/charmander/i);
+    expect(charmanderCard).toBeInTheDocument();
+    userEvent.click(nextPokemon);
+
+    const rapidashCard = screen.getByText(/rapidash/i);
+    expect(rapidashCard).toBeInTheDocument();
+    userEvent.click(nextPokemon);
+
+    expect(charmanderCard).toBeInTheDocument();
+  });
 });
