@@ -30,4 +30,20 @@ describe('Pokemon Details', () => {
     const summaryContent = screen.getByText(pokemons[0].summary);
     expect(summaryContent).toBeInTheDocument();
   });
+
+  it('Should contain a area for show Pokemon routes', () => {
+    const titleElement = screen.getByRole('heading', {
+      name: /game locations of pikachu/i,
+      level: 2,
+    });
+    expect(titleElement).toBeInTheDocument();
+
+    const routesContent = screen.getAllByRole('img', {
+      name: /pikachu location/i,
+    });
+
+    routesContent.forEach((route, index) => {
+      expect(route.src).toBe(pokemons[0].foundAt[index].map);
+    });
+  });
 });
