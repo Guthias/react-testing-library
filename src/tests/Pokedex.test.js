@@ -11,11 +11,14 @@ pokemons.forEach(({ id }) => {
 });
 
 describe('Pokedex', () => {
-  it('Should contain a title with the text \'Encountered pokémons\'', () => {
+  beforeEach(() => {
     renderWithRouter(<Pokedex
       pokemons={ pokemons }
       isPokemonFavoriteById={ isPokemonFavoriteById }
     />);
+  });
+
+  it('Should contain a title with the text \'Encountered pokémons\'', () => {
     const titleElement = screen.getByRole('heading', {
       name: /encountered pokémons/i,
       level: 2,
@@ -25,10 +28,6 @@ describe('Pokedex', () => {
 
   it(`Should contain a button and show the next Pokemon when click on the button
     and back to first when click on the last pokemon`, () => {
-    renderWithRouter(<Pokedex
-      pokemons={ pokemons }
-      isPokemonFavoriteById={ isPokemonFavoriteById }
-    />);
     const nextPokemon = screen.getByRole('button', {
       name: /próximo pokémon/i,
     });
