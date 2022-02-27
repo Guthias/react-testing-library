@@ -5,7 +5,7 @@ import renderWithRouter from './renderWithRouter';
 import PokemonDetails from '../components/PokemonDetails';
 
 describe('Pokemon Details', () => {
-  it('', () => {
+  it('Should contain ', () => {
 
   });
 });

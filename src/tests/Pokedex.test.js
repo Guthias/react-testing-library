@@ -26,15 +26,9 @@ describe('Pokedex', () => {
     expect(titleElement).toBeInTheDocument();
   });
 
-  it(`Should contain a button and show the next Pokemon when click on the button
-    and back to first when click on the last pokemon`, () => {
+  it('Should contain a button and show the next Pokemon when click on the button'
+    + ' and back to first when click on the last pokemon', () => {
     const nextPokemon = screen.getByRole('button', { name: /próximo pokémon/i });
-    const resetFilter = screen.getByRole('button', { name: /all/i });
-    const dragonFilter = screen.getByRole('button', { name: /dragon/i });
-
-    userEvent.click(dragonFilter);
-    userEvent.click(resetFilter);
-
     pokemons.forEach(({ name }) => {
       const pokemonName = screen.getByText(name);
       const moreDetails = screen.getAllByRole('link', {
@@ -63,5 +57,17 @@ describe('Pokedex', () => {
     userEvent.click(nextPokemon);
 
     expect(charmanderCard).toBeInTheDocument();
+  });
+
+  it('Should contain a button for reset filters', () => {
+    const nextPokemon = screen.getByRole('button', { name: /próximo pokémon/i });
+    const dragonFilter = screen.getByRole('button', { name: /dragon/i });
+    const resetFilter = screen.getByRole('button', { name: /all/i });
+
+    userEvent.click(dragonFilter);
+    expect(nextPokemon.disabled).toBe(true);
+
+    userEvent.click(resetFilter);
+    expect(nextPokemon.disabled).toBe(false);
   });
 });
