@@ -46,4 +46,27 @@ describe('Pokemon Details', () => {
       expect(route.src).toBe(pokemons[0].foundAt[index].map);
     });
   });
+
+  it('Should contain a checkbox for mark Pokemon as favorite', () => {
+    const favoriteCheckbox = screen.getByRole('checkbox', {
+      name: /pokémon favoritado\?/i,
+    });
+    userEvent.click(favoriteCheckbox);
+
+    let favoriteStar = screen.getByRole('img', {
+      name: /pikachu is marked as favorite/i,
+    });
+
+    expect(favoriteStar).toBeInTheDocument();
+    userEvent.click(favoriteCheckbox);
+
+    expect(favoriteStar).not.toBeInTheDocument();
+    userEvent.click(favoriteCheckbox);
+
+    favoriteStar = screen.getByRole('img', {
+      name: /pikachu is marked as favorite/i,
+    });
+
+    expect(favoriteStar).toBeInTheDocument();
+  });
 });
