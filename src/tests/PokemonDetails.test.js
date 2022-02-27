@@ -3,6 +3,7 @@ import { screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import App from '../App';
+import pokemons from '../data';
 
 describe('Pokemon Details', () => {
   beforeEach(() => {
@@ -17,5 +18,16 @@ describe('Pokemon Details', () => {
       level: 2,
     });
     expect(titleElement).toBeInTheDocument();
+  });
+
+  it('Should contain a area with Pokemon summary', () => {
+    const titleElement = screen.getByRole('heading', {
+      name: /summary/i,
+      level: 2,
+    });
+    expect(titleElement).toBeInTheDocument();
+
+    const summaryContent = screen.getByText(pokemons[0].summary);
+    expect(summaryContent).toBeInTheDocument();
   });
 });
