@@ -28,9 +28,13 @@ describe('Pokedex', () => {
 
   it(`Should contain a button and show the next Pokemon when click on the button
     and back to first when click on the last pokemon`, () => {
-    const nextPokemon = screen.getByRole('button', {
-      name: /próximo pokémon/i,
-    });
+    const nextPokemon = screen.getByRole('button', { name: /próximo pokémon/i });
+    const resetFilter = screen.getByRole('button', { name: /all/i });
+    const dragonFilter = screen.getByRole('button', { name: /dragon/i });
+
+    userEvent.click(dragonFilter);
+    userEvent.click(resetFilter);
+
     pokemons.forEach(({ name }) => {
       const pokemonName = screen.getByText(name);
       const moreDetails = screen.getAllByRole('link', {
@@ -40,6 +44,7 @@ describe('Pokedex', () => {
       expect(pokemonName).toBeInTheDocument();
       userEvent.click(nextPokemon);
     });
+
     const pokemonName = screen.getByText(/pikachu/i);
     expect(pokemonName).toBeInTheDocument();
   });
