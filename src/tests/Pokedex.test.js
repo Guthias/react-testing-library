@@ -16,5 +16,10 @@ describe('Pokedex', () => {
       pokemons={ pokemons }
       isPokemonFavoriteById={ isPokemonFavoriteById }
     />);
+    const titleElement = screen.getByRole('heading', {
+      name: /encountered pokémons/i,
+      level: 2,
+    });
+    expect(titleElement).toBeInTheDocument();
   });
 });
