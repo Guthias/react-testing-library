@@ -11,8 +11,11 @@ describe('Pokemon Details', () => {
     history.push('/pokemons/25');
   });
 
-  it('Should contain a title with the text \'Pikachu details\'', () => {
-    const titleElement = screen.getByRole('heading', { name: /pikachu details/i });
+  it('Should contain a h2 with the text \'Pikachu details\'', () => {
+    const titleElement = screen.getByRole('heading', {
+      name: /pikachu details/i,
+      level: 2,
+    });
     expect(titleElement).toBeInTheDocument();
   });
 });
