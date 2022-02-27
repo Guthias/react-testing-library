@@ -22,4 +22,26 @@ describe('Pokedex', () => {
     });
     expect(titleElement).toBeInTheDocument();
   });
+
+  it(`Should contain a button and show the next Pokemon when click on the button
+    and back to first when click on the last pokemon`, () => {
+    renderWithRouter(<Pokedex
+      pokemons={ pokemons }
+      isPokemonFavoriteById={ isPokemonFavoriteById }
+    />);
+    const nextPokemon = screen.getByRole('button', {
+      name: /próximo pokémon/i,
+    });
+    pokemons.forEach(({ name }) => {
+      const pokemonName = screen.getByText(name);
+      const moreDetails = screen.getAllByRole('link', {
+        name: /more details/i,
+      });
+      expect(moreDetails.length).toBe(1);
+      expect(pokemonName).toBeInTheDocument();
+      userEvent.click(nextPokemon);
+    });
+    const pokemonName = screen.getByText(/pikachu/i);
+    expect(pokemonName).toBeInTheDocument();
+  });
 });
