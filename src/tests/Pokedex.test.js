@@ -43,6 +43,12 @@ describe('Pokedex', () => {
     expect(pokemonName).toBeInTheDocument();
   });
 
+  it('Should contain a button for each different type', () => {
+    const NUMBER_OF_TYPES = 7;
+    const filterButtons = screen.getAllByTestId('pokemon-type-button');
+    expect(filterButtons.length).toBe(NUMBER_OF_TYPES);
+  });
+
   it('Should contain filter buttons', () => {
     const fireFilter = screen.getByRole('button', { name: /fire/i });
     const nextPokemon = screen.getByRole('button', { name: /próximo pokémon/i });
