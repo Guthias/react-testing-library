@@ -1,6 +1,5 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
 import renderWithRouter from './renderWithRouter';
 import FavoritePokemons from '../components/FavoritePokemons';
 
@@ -44,4 +43,15 @@ describe('Favorite Pokemmons', () => {
       const noFavoriteText = screen.getByText(/no favorite pokemon found/i);
       expect(noFavoriteText).toBeInTheDocument();
     });
+
+  it('Should contain all Pokemon cards', () => {
+    renderWithRouter(<FavoritePokemons pokemons={ pokemons } />);
+    const pikachuElement = screen.getByText(/pikachu/i);
+    const charmanderElement = screen.getByText(/charmander/i);
+    const dragoniteElement = screen.getByText(/dragonair/i);
+    expect(pikachuElement && charmanderElement && dragoniteElement).toBeInTheDocument();
+
+    const cards = screen.getAllByRole('link', { name: /more details/i });
+    expect(cards.length).toBe(pokemons.length);
+  });
 });
